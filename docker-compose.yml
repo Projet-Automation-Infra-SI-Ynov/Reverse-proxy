@@ -2,12 +2,21 @@ version: '3.2'
 
 services:
   reverse:
+    build: ./html
     container_name: reverse-proxy
-    image: nginx
+    image: nginx:1.21.6
     ports:
      - 80:80
      - 443:443
     volumes:
       - ./config:/etc/nginx
       - ./certs:/etc/ssl/private
+      - ./html/index.html:/usr/share/nginx/html/index.html
     restart: always
+
+  # web:
+  #   container_name: index
+  #   build: ./html
+  #   volumes:
+  #     - ./html/index.html:/usr/share/nginx/html/index.html
+  #   restart: always
