@@ -1,0 +1,32 @@
+version: '3.2'
+
+services:
+  nginx:
+    #build: ./html
+    container_name: nginx
+    image: nginx:1.21.6
+    ports:
+     - 80:80
+     #- 443:443
+    volumes:
+      - ./config:/etc/nginx
+      - ./certs:/etc/ssl/private
+      #- ./html/index.html:/usr/share/nginx/html/index.html
+    restart: always
+
+  nginx-exporter:
+    image: fish/nginx-exporter:v0.1.1
+    container_name: nginx-exporter
+    command: 
+      - -nginx.scrape_uri=http://nginx/metrics
+      # - -nginx.retries=10
+      # - -web.telemetry-path=/metrics
+    ports:
+      - 9113:9113
+
+  # web:
+  #   container_name: index
+  #   build: ./html
+  #   volumes:
+  #     - ./html/index.html:/usr/share/nginx/html/index.html
+  #   restart: always

@@ -1,0 +1,35 @@
+---
+# tasks file for Nginx
+
+- name: Download Nginx repository
+  git:
+    repo: https://github.com/Projet-Automation-Infra-SI-Ynov/Reverse-proxy.git
+    dest: /home/administrateur/nginx
+    version: master
+
+- name: Add Jenkins IP in jenkins file
+  shell: sed -i 's/IP_JENKINS/JENKINS2/g' /home/administrateur/nginx/config/conf.d/jenkins.conf
+
+- name: Add Grafana IP in grafana file
+  shell: sed -i 's/IP_JENKINS/JENKINS2/g' /home/administrateur/nginx/config/conf.d/grafana.conf
+
+- name: Add Prometheus IP in prometheus file
+  shell: sed -i 's/IP_JENKINS/JENKINS2/g' /home/administrateur/nginx/config/conf.d/prometheus.conf
+
+- name: Add Registry IP in registry file
+  shell: sed -i 's/IP_REGISTRY/REGISTRY2/g' /home/administrateur/nginx/config/conf.d/registry.conf
+
+- name: Add Bitwarden IP in bitwarden file
+  shell: sed -i 's/IP_REGISTRY/REGISTRY2/g' /home/administrateur/nginx/config/conf.d/bitwarden.conf
+
+- name: Add Graylog IP in prometheus.yml
+  shell: sed -i 's/IP_LOG/GRAYLOG/g' /home/administrateur/nginx/config/conf.d/graylog.conf
+
+- name: Add Nginx IP in home page
+  shell: sed -i 's/IP_LOG/GRAYLOG/g' /home/administrateur/nginx/config/conf.d/intranet.conf
+
+- name: Deploy Docker Compose Nginx
+  docker_compose:
+    build: yes
+    project_src: /home/administrateur/nginx
+    state: present
