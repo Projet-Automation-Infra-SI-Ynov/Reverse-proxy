@@ -5,7 +5,7 @@
   git:
     repo: https://github.com/Projet-Automation-Infra-SI-Ynov/Reverse-proxy.git
     dest: /home/administrateur/nginx
-    version: develop
+    version: master
 
 - name: Add Jenkins IP in jenkins file
   shell: sed -i 's/IP_JENKINS/JENKINS2/g' /home/administrateur/nginx/config/conf.d/jenkins.conf
