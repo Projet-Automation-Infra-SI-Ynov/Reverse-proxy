@@ -25,9 +25,6 @@
 - name: Add Graylog IP in prometheus.yml
   shell: sed -i 's/IP_LOG/GRAYLOG/g' /home/administrateur/nginx/config/conf.d/graylog.conf
 
-- name: Add Nginx IP in home page
-  shell: sed -i 's/IP_LOG/GRAYLOG/g' /home/administrateur/nginx/config/conf.d/intranet.conf
-
 - name: Deploy Docker Compose Nginx
   docker_compose:
     build: yes
