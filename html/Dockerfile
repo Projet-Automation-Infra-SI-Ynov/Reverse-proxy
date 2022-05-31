@@ -1,5 +1,5 @@
-FROM nginx
+# FROM nginx
 
-# ENV DEBIAN_FRONTEND noninteractive
+# # ENV DEBIAN_FRONTEND noninteractive
 
-COPY index.html /usr/share/nginx/html
+# COPY index.html /usr/share/nginx/html
